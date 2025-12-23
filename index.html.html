@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cansu için 🌸</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #fff1f7, #f7fff1);
+      overflow: hidden;
+    }
+    .card {
+      position: relative;
+      max-width: 680px;
+      margin: 10vh auto;
+      background: rgba(255,255,255,0.92);
+      border-radius: 20px;
+      padding: 34px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 { color: #e75480; margin-bottom: 12px; }
+    p { color: #444; line-height: 1.7; font-size: 18px; }
+    .note-link {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 12px 22px;
+      background: #ffe4ef;
+      color: #c7436b;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .note-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .footer { margin-top: 24px; color: #888; font-size: 14px; }
+    .flower {
+      position: absolute;
+      top: -10%;
+      font-size: 24px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes fall {
+      to { transform: translateY(120vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Cansu 🌸</h1>
+    <p>
+      Bu siteyi sen gülümse diye hazırladım,<br>
+      çünkü gülmek sana yakışıyor.
+    </p>
+
+    <a class="note-link" href="not.html" target="_blank">
+      Sana ufak bir not 💌
+    </a>
+
+    <div class="footer">— Seni düşünen bir arkadaşın</div>
+  </div>
+
+  <script>
+    const flowers = ["🌸","🌼","🌷","🌺","🌹"];
+    for (let i = 0; i < 35; i++) {
+      const f = document.createElement("div");
+      f.className = "flower";
+      f.textContent = flowers[Math.floor(Math.random()*flowers.length)];
+      f.style.left = Math.random()*100 + "vw";
+      f.style.animationDuration = (7 + Math.random()*10) + "s";
+      f.style.fontSize = (18 + Math.random()*22) + "px";
+      document.body.appendChild(f);
+    }
+  </script>
+</body>
+</html>
