@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ufak Bir Not 🌷</title>
-
 <style>
 body {
   margin: 0;
@@ -13,9 +12,8 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #fff1f7, #f7fff1);
+  background: #fff1f7;
 }
-
 .card {
   background: white;
   padding: 50px;
@@ -24,70 +22,40 @@ body {
   text-align: center;
   width: 480px;
 }
-
-.big {
-  font-size: 40px;
-  color: #e75480;
-  font-weight: bold;
-}
-
-.text {
-  margin-top: 20px;
-  font-size: 20px;
-  color: #444;
-}
-
-.tap {
-  margin-top: 30px;
-  font-size: 14px;
-  color: #999;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
+.big { font-size: 36px; color: #e75480; font-weight: bold; }
+.text { margin-top: 20px; font-size: 20px; color: #444; }
+.tap { margin-top: 30px; font-size: 14px; color: #999; cursor: pointer; }
+.hidden { display: none; }
 </style>
 </head>
-
 <body>
-
 <div class="card">
-
-  <!-- 1 -->
   <div id="step1">
     <div class="big">Kolay gelsin ✨</div>
     <div class="text">İyi ki bu cümleyi söylemişsin.</div>
   </div>
 
-  <!-- 2 -->
   <div id="step2" class="hidden">
     <div class="big">Bazı tanışmalar</div>
-    <div class="text">
-      tesadüf gibi görünse de<br>
-      bazen çok özeldir 🌷
-    </div>
+    <div class="text">tesadüf gibi görünse de<br>bazen çok özeldir 🌷</div>
     <div id="tap" class="tap">(ekrana dokun)</div>
   </div>
 
-  <!-- 3 -->
   <div id="step3" class="hidden">
     <div class="big">İyi ki tanışmışız 🌷</div>
   </div>
-
 </div>
 
 <script>
-setTimeout(function () {
-  document.getElementById("step1").classList.add("hidden");
-  document.getElementById("step2").classList.remove("hidden");
+setTimeout(function() {
+  document.getElementById('step1').classList.add('hidden');
+  document.getElementById('step2').classList.remove('hidden');
 }, 3000);
 
-document.getElementById("tap").onclick = function () {
-  document.getElementById("step2").classList.add("hidden");
-  document.getElementById("step3").classList.remove("hidden");
+document.getElementById('tap').onclick = function() {
+  document.getElementById('step2').classList.add('hidden');
+  document.getElementById('step3').classList.remove('hidden');
 };
 </script>
-
 </body>
 </html>
