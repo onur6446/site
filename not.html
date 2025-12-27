@@ -27,16 +27,7 @@ body {
   overflow: hidden;
 }
 
-/* ORTAK */
-.section {
-  transition: opacity 1s ease;
-}
-
-/* 1. KISIM */
-#ilkBolum {
-  opacity: 1;
-}
-
+/* GENEL */
 .main-text {
   font-size: 42px;
   font-weight: bold;
@@ -49,12 +40,7 @@ body {
   color: #444;
 }
 
-/* 2. KISIM */
-#ikinciBolum {
-  display: none;
-  opacity: 0;
-}
-
+/* FADE */
 .fade-in {
   animation: fadeInUp 1.2s ease forwards;
 }
@@ -125,13 +111,13 @@ body {
 <div class="card">
 
   <!-- 1. KISIM -->
-  <div id="ilkBolum" class="section">
+  <div id="ilkBolum">
     <div class="main-text">Kolay gelsin ✨</div>
     <div class="sub-text">İyi ki bu cümleyi söylemişsin.</div>
   </div>
 
   <!-- 2. KISIM -->
-  <div id="ikinciBolum" class="section">
+  <div id="ikinciBolum" style="display:none; opacity:0;">
     <div class="main-text fade-in">
       Bazı tanışmalar tesadüf gibi görünse de
     </div>
@@ -144,40 +130,45 @@ body {
     </div>
 
     <div id="sonMesaj">
-      İyi ki tanışmışızz 🌷
+      İyi ki tanışmışız 🌷
     </div>
   </div>
 
 </div>
 
 <script>
-// Konfeti
-for (let i = 0; i < 25; i++) {
-  const confetti = document.createElement("div");
-  confetti.className = "confetti";
-  confetti.style.left = Math.random() * 100 + "%";
-  confetti.style.background =
-    ["#ffb6c1", "#ffd1dc", "#ffe4e1", "#f7c6d9"][Math.floor(Math.random() * 4)];
-  confetti.style.animationDuration = (Math.random() * 1.5 + 1) + "s";
-  document.querySelector(".card").appendChild(confetti);
-}
+window.addEventListener("load", function () {
 
-// Geçiş
-setTimeout(() => {
-  document.getElementById("ilkBolum").style.opacity = 0;
-}, 3000);
+  /* Konfeti */
+  for (let i = 0; i < 25; i++) {
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.style.left = Math.random() * 100 + "%";
+    confetti.style.background =
+      ["#ffb6c1", "#ffd1dc", "#ffe4e1", "#f7c6d9"][Math.floor(Math.random() * 4)];
+    confetti.style.animationDuration = (Math.random() * 1.5 + 1) + "s";
+    document.querySelector(".card").appendChild(confetti);
+  }
 
-setTimeout(() => {
-  document.getElementById("ilkBolum").style.display = "none";
-  const ikinci = document.getElementById("ikinciBolum");
-  ikinci.style.display = "block";
-  ikinci.style.opacity = 1;
-}, 4000);
+  /* 1. kısım kaybol */
+  setTimeout(() => {
+    document.getElementById("ilkBolum").style.opacity = "0";
+  }, 3000);
 
-// Dokununca final mesaj
-document.getElementById("dokunYazi").addEventListener("click", () => {
-  document.getElementById("dokunYazi").style.display = "none";
-  document.getElementById("sonMesaj").style.display = "block";
+  /* 2. kısım gel */
+  setTimeout(() => {
+    document.getElementById("ilkBolum").style.display = "none";
+    const ikinci = document.getElementById("ikinciBolum");
+    ikinci.style.display = "block";
+    ikinci.style.opacity = "1";
+  }, 4000);
+
+  /* Dokununca final */
+  document.getElementById("dokunYazi").onclick = function () {
+    this.style.display = "none";
+    document.getElementById("sonMesaj").style.display = "block";
+  };
+
 });
 </script>
 
