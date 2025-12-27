@@ -8,100 +8,44 @@
 <style>
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #fff1f7, #f7fff1);
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #fff1f7, #f7fff1);
 }
 
 .card {
   background: white;
-  border-radius: 20px;
   padding: 50px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
   text-align: center;
-  width: 500px;
-  position: relative;
-  overflow: hidden;
+  width: 480px;
 }
 
-/* GENEL */
-.main-text {
-  font-size: 42px;
-  font-weight: bold;
+.big {
+  font-size: 40px;
   color: #e75480;
+  font-weight: bold;
 }
 
-.sub-text {
+.text {
   margin-top: 20px;
   font-size: 20px;
   color: #444;
 }
 
-/* FADE */
-.fade-in {
-  animation: fadeInUp 1.2s ease forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* DOKUN */
-.dokun {
+.tap {
   margin-top: 30px;
   font-size: 14px;
-  color: #aaa;
+  color: #999;
   cursor: pointer;
-  animation: blink 1.5s infinite;
 }
 
-@keyframes blink {
-  0%,100% { opacity: 0.3; }
-  50% { opacity: 1; }
-}
-
-/* SON MESAJ */
-#sonMesaj {
+.hidden {
   display: none;
-  font-size: 36px;
-  color: #e75480;
-  font-weight: bold;
-  margin-top: 20px;
-  animation: rise 1.2s ease forwards;
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* KONFETİ */
-.confetti {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  animation: fall 2s linear infinite;
-}
-
-@keyframes fall {
-  0% { transform: translateY(-20px) rotate(0); opacity: 1; }
-  100% { transform: translateY(300px) rotate(360deg); opacity: 0; }
 }
 </style>
 </head>
@@ -110,66 +54,39 @@ body {
 
 <div class="card">
 
-  <!-- 1. KISIM -->
-  <div id="ilkBolum">
-    <div class="main-text">Kolay gelsin ✨</div>
-    <div class="sub-text">İyi ki bu cümleyi söylemişsin.</div>
+  <!-- 1 -->
+  <div id="step1">
+    <div class="big">Kolay gelsin ✨</div>
+    <div class="text">İyi ki bu cümleyi söylemişsin.</div>
   </div>
 
-  <!-- 2. KISIM -->
-  <div id="ikinciBolum" style="display:none; opacity:0;">
-    <div class="main-text fade-in">
-      Bazı tanışmalar tesadüf gibi görünse de
-    </div>
-    <div class="sub-text fade-in">
+  <!-- 2 -->
+  <div id="step2" class="hidden">
+    <div class="big">Bazı tanışmalar</div>
+    <div class="text">
+      tesadüf gibi görünse de<br>
       bazen çok özeldir 🌷
     </div>
+    <div id="tap" class="tap">(ekrana dokun)</div>
+  </div>
 
-    <div id="dokunYazi" class="dokun">
-      (ekrana dokun)
-    </div>
-
-    <div id="sonMesaj">
-      İyi ki tanışmışız 🌷
-    </div>
+  <!-- 3 -->
+  <div id="step3" class="hidden">
+    <div class="big">İyi ki tanışmışız 🌷</div>
   </div>
 
 </div>
 
 <script>
-window.addEventListener("load", function () {
+setTimeout(function () {
+  document.getElementById("step1").classList.add("hidden");
+  document.getElementById("step2").classList.remove("hidden");
+}, 3000);
 
-  /* Konfeti */
-  for (let i = 0; i < 25; i++) {
-    const confetti = document.createElement("div");
-    confetti.className = "confetti";
-    confetti.style.left = Math.random() * 100 + "%";
-    confetti.style.background =
-      ["#ffb6c1", "#ffd1dc", "#ffe4e1", "#f7c6d9"][Math.floor(Math.random() * 4)];
-    confetti.style.animationDuration = (Math.random() * 1.5 + 1) + "s";
-    document.querySelector(".card").appendChild(confetti);
-  }
-
-  /* 1. kısım kaybol */
-  setTimeout(() => {
-    document.getElementById("ilkBolum").style.opacity = "0";
-  }, 3000);
-
-  /* 2. kısım gel */
-  setTimeout(() => {
-    document.getElementById("ilkBolum").style.display = "none";
-    const ikinci = document.getElementById("ikinciBolum");
-    ikinci.style.display = "block";
-    ikinci.style.opacity = "1";
-  }, 4000);
-
-  /* Dokununca final */
-  document.getElementById("dokunYazi").onclick = function () {
-    this.style.display = "none";
-    document.getElementById("sonMesaj").style.display = "block";
-  };
-
-});
+document.getElementById("tap").onclick = function () {
+  document.getElementById("step2").classList.add("hidden");
+  document.getElementById("step3").classList.remove("hidden");
+};
 </script>
 
 </body>
