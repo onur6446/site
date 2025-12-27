@@ -1,66 +1,93 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ufak Bir Not 🌷</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ufak Bir Not 🌷</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(180deg, #fff1f7, #f7fff1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #fff1f7, #f7fff1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
-    .card {
-      background: rgba(255,255,255,0.95);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-      max-width: 520px;
-    }
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
 
-    h1 {
-      color: #e75480;
-      margin-bottom: 10px;
-    }
+.main-text {
+  font-size: 42px;
+  font-weight: bold;
+  color: #e75480;
+  animation: pop 0.8s ease-out forwards;
+}
 
-    .photo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      margin: 20px auto;
-      display: block;
-    }
+.sub-text {
+  margin-top: 25px;
+  font-size: 20px;
+  color: #444;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+  animation-delay: 0.8s;
+}
 
-    p {
-      font-size: 20px;
-      line-height: 1.7;
-      color: #444;
-      margin-top: 20px;
-    }
-  </style>
+/* Konfeti */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: pink;
+  animation: fall 2s linear infinite;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.3); opacity: 0; }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fall {
+  0% { transform: translateY(-20px) rotate(0); opacity: 1; }
+  100% { transform: translateY(300px) rotate(360deg); opacity: 0; }
+}
+</style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>🌸 Dünyanın En Güzel Çiçeği</h1>
+<div class="card">
+  <div class="main-text">Kolay gelsin ✨</div>
 
-    <!-- FOTOĞRAF -->
-    <img src="cicek.jpg" alt="Dünyanın en güzel çiçeği" class="photo">
-
-    <p>
-      <br>
-    <br>
-      
-    </p>
+  <div class="sub-text">
+    İyi ki bu cümleyi söylemişsin.
   </div>
+</div>
+
+<script>
+for (let i = 0; i < 25; i++) {
+  const confetti = document.createElement("div");
+  confetti.className = "confetti";
+  confetti.style.left = Math.random() * 100 + "%";
+  confetti.style.background =
+    ["#ffb6c1", "#ffd1dc", "#ffe4e1", "#f7c6d9"][Math.floor(Math.random() * 4)];
+  confetti.style.animationDuration = (Math.random() * 1.5 + 1) + "s";
+  document.querySelector(".card").appendChild(confetti);
+}
+</script>
+
 </body>
 </html>
