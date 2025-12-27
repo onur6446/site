@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ufak Bir Not 🌷</title>
 
 <style>
@@ -22,43 +22,95 @@ body {
   padding: 50px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.12);
   text-align: center;
+  width: 500px;
   position: relative;
   overflow: hidden;
+}
+
+/* ORTAK */
+.section {
+  transition: opacity 1s ease;
+}
+
+/* 1. KISIM */
+#ilkBolum {
+  opacity: 1;
 }
 
 .main-text {
   font-size: 42px;
   font-weight: bold;
   color: #e75480;
-  animation: pop 0.8s ease-out forwards;
 }
 
 .sub-text {
-  margin-top: 25px;
+  margin-top: 20px;
   font-size: 20px;
   color: #444;
-  opacity: 0;
-  animation: fadeIn 1.2s ease forwards;
-  animation-delay: 0.8s;
 }
 
-/* Konfeti */
+/* 2. KISIM */
+#ikinciBolum {
+  display: none;
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* DOKUN */
+.dokun {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #aaa;
+  cursor: pointer;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* SON MESAJ */
+#sonMesaj {
+  display: none;
+  font-size: 36px;
+  color: #e75480;
+  font-weight: bold;
+  margin-top: 20px;
+  animation: rise 1.2s ease forwards;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* KONFETİ */
 .confetti {
   position: absolute;
   width: 8px;
   height: 8px;
-  background: pink;
   animation: fall 2s linear infinite;
-}
-
-@keyframes pop {
-  0% { transform: scale(0.3); opacity: 0; }
-  70% { transform: scale(1.1); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
 }
 
 @keyframes fall {
@@ -69,15 +121,37 @@ body {
 </head>
 
 <body>
-<div class="card">
-  <div class="main-text">Kolay gelsin ✨</div>
 
-  <div class="sub-text">
-    İyi ki bu cümleyi söylemişsin.
+<div class="card">
+
+  <!-- 1. KISIM -->
+  <div id="ilkBolum" class="section">
+    <div class="main-text">Kolay gelsin ✨</div>
+    <div class="sub-text">İyi ki bu cümleyi söylemişsin.</div>
   </div>
+
+  <!-- 2. KISIM -->
+  <div id="ikinciBolum" class="section">
+    <div class="main-text fade-in">
+      Bazı tanışmalar tesadüf gibi görünse de
+    </div>
+    <div class="sub-text fade-in">
+      bazen çok özeldir 🌷
+    </div>
+
+    <div id="dokunYazi" class="dokun">
+      (ekrana dokun)
+    </div>
+
+    <div id="sonMesaj">
+      İyi ki tanışmışız 🌷
+    </div>
+  </div>
+
 </div>
 
 <script>
+// Konfeti
 for (let i = 0; i < 25; i++) {
   const confetti = document.createElement("div");
   confetti.className = "confetti";
@@ -87,6 +161,24 @@ for (let i = 0; i < 25; i++) {
   confetti.style.animationDuration = (Math.random() * 1.5 + 1) + "s";
   document.querySelector(".card").appendChild(confetti);
 }
+
+// Geçiş
+setTimeout(() => {
+  document.getElementById("ilkBolum").style.opacity = 0;
+}, 3000);
+
+setTimeout(() => {
+  document.getElementById("ilkBolum").style.display = "none";
+  const ikinci = document.getElementById("ikinciBolum");
+  ikinci.style.display = "block";
+  ikinci.style.opacity = 1;
+}, 4000);
+
+// Dokununca final mesaj
+document.getElementById("dokunYazi").addEventListener("click", () => {
+  document.getElementById("dokunYazi").style.display = "none";
+  document.getElementById("sonMesaj").style.display = "block";
+});
 </script>
 
 </body>
